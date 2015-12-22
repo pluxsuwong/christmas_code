@@ -13,12 +13,6 @@ def exec_circuit():
     global wires, cmd_list
     used = []
     while len(cmd_list) > 0:
-        try:
-            print wires['a']
-            break
-        except:
-            pass
-
         cmd_list_cp = cmd_list
         for cmd in cmd_list_cp:
             if cmd[0] == 'NOT':
@@ -83,5 +77,7 @@ while c != '':
     c = f.readline().rstrip()
 
 find_inputs()
+wires['b'] = 46065
 print 'inputs:', wires
 exec_circuit()
+print wires['a']
