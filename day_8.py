@@ -6,19 +6,13 @@ in_mem = 0
 s = f.readline().rstrip()
 while s != '':
     lit += len(s)
-    in_mem_buf = -2
-    esc_flag = False
+    in_mem_buf = 2
     for c in s:
-        if esc_flag:
-            if c == 'x':
-                in_mem_buf -= 2
-            esc_flag = False
-        elif c == '\\':
-            in_mem_buf += 1
-            esc_flag = True
+        if c == '\\' or c == '\"':
+            in_mem_buf += 2
         else:
             in_mem_buf += 1
     in_mem += in_mem_buf
     s = f.readline().rstrip()
 
-print lit - in_mem
+print -lit + in_mem
