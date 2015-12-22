@@ -10,7 +10,7 @@ mh = m.digest()
 op = "".join("{:02x}".format(ord(c)) for c in mh)
 num = 0
 
-while op[:5] != '00000':
+while op[:6] != '000000':
     num += 1
     ss = s + str(num)
     mm = hl.md5()
