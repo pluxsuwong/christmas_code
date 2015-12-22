@@ -10,14 +10,12 @@ def iterate(start, end, mode):
         for x in range(dx):
             c = (s[0] + x, s[1] + y)
             if mode == 0:
-                grid[c[1]][c[0]] = 0
+                if grid[c[1]][c[0]] > 0:
+                    grid[c[1]][c[0]] -= 1
             elif mode == 1:
-                grid[c[1]][c[0]] = 1
+                grid[c[1]][c[0]] += 1
             elif mode == 2:
-                if grid[c[1]][c[0]] == 0:
-                    grid[c[1]][c[0]] = 1
-                else:
-                    grid[c[1]][c[0]] = 0
+                grid[c[1]][c[0]] += 2
             else:
                 print 'Invalid mode'
 
@@ -55,7 +53,6 @@ while s != '':
 ctr = 0
 for row in grid:
     for light in row:
-        if light == 1:
-            ctr += 1
+        ctr += light
 print ctr
 
