@@ -9,6 +9,7 @@ while s != '':
     s = f.readline().rstrip()
 
 distances = {}
+points = {}
 
 for i in range(2504):
     for r in graph:
@@ -18,5 +19,18 @@ for i in range(2504):
                 distances[r] += e[0]
             except:
                 distances[r] = e[0]
+    leaders = []
+    for r in distances:
+        if not leaders:
+            leaders.append(r)
+        elif distances[r] > distances[leaders[0]]:
+            leaders = [r]
+        elif distances[r] == distances[leaders[0]]:
+            leaders.append(r)
+    for r in leaders:
+        try:
+            points[r] += 1
+        except:
+            points[r] = 1
 
-print distances
+print points
