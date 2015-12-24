@@ -8,11 +8,11 @@ def cur_vol(containers):
 
 def progress(cur_containers, rem_containers):
     if cur_vol(cur_containers) == 150:
-        return cur_containers
+        return [cur_containers]
     elif cur_vol(cur_containers) > 150:
         return None
 
-    combos = set([])
+    combos = []
     while rem_containers:
         c = rem_containers.pop(0)
         containers_cp = copy.deepcopy(rem_containers)
@@ -21,7 +21,7 @@ def progress(cur_containers, rem_containers):
         more_combos = progress(new_cur_containers, containers_cp)
         if more_combos != None:
             for combo in more_combos:
-                combos.add(combo)
+                combos.append(combo)
     return combos
 
 f = open('day_17', 'r')
@@ -43,12 +43,16 @@ while unsorted_containers:
     containers.append(max_c)
     unsorted_containers.remove(max_c)
 
-combos = set([])
+combos = []
 while containers:
     c = containers.pop(0)
     containers_cp = copy.deepcopy(containers)
     more_combos = progress([c], containers_cp)
     for combo in more_combos:
-        combos.add(combo)
-
+        combos.append(combo)
+'''
+for c in combos:
+    print c
+print combos
+'''
 print len(combos)
