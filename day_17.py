@@ -55,4 +55,14 @@ for c in combos:
     print c
 print combos
 '''
-print len(combos)
+
+min_size = 999
+min_bufs = []
+for c in combos:
+    if len(c) < min_size:
+        min_size = len(c)
+        min_bufs = [c]
+    elif len(c) == min_size:
+        min_bufs.append(c)
+
+print len(min_bufs)
